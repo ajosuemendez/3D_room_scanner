@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find scanner_project)/launch/demo.launch"/>
+    <include file="$(find scanner_project)/launch/web_server.launch"/>
+</launch>

@@ -1,0 +1,16 @@
+{
+  "name": "scrum_week_api",
+  "version": "1.0.0",
+  "description": "scrum week",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  }
+}

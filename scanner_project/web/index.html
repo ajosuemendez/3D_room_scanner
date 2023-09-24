@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="./index.css">
+  <script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+  <script src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+  <!-- <script src="./fib.js"></script> -->
+  <!-- <script src="./simplePub.js"></script>" -->
+  <script src="./start.js" type="text/javascript"></script>
+  <script> var startCommand = new ROSLIB.Topic({
+    ros : ros,
+    name : '/start_cmd',
+    messageType : 'std_msgs/String'
+  });</script>
+  </head>
+
+  <body>
+    <div class="page-container"  name="This is my cool title container" onclick="">
+      <h1 class="welcome-title">Welcome!</h1>
+      <h4 class="subtitle">Click on Start to initialize the scan</h4>
+      <button id="btn-init" class="btn start-btn sm-margin " onclick="startHandler(event)" name="initialize">Turn On</button>
+      <button id="btn-start" class="btn start-btn sm-margin "  onclick="startHandler(event)" name="start">Start</button>
+      <button id="btn-stop" class="btn stop-btn " onclick="startHandler(event)" name="stop">Stop</button>
+      <button id="btn-kill" class="btn stop-kill" onclick="startHandler(event)" name="kill">Turn Off</button>
+      <iframe id="iframe" src="./pcd/" height="400" width="500" title="Vorschau"></iframe>
+    </div>
+  </body>
+</html>

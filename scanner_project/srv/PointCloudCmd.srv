@@ -1,0 +1,4 @@
+bool data
+---
+PointCloud2 pointCloudData
+string message

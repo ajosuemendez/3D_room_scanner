@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <node
+        pkg="image_transport"
+        type="republish"
+        name="republish_camera2"
+        output="screen"
+        args="raw in:=/rviz1/camera2/image
+              compressed out:=/rviz1/camera2/image_compressed">
+    </node>
+
+
+</launch>

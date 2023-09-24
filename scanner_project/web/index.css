@@ -1,0 +1,43 @@
+body{
+  background: #EDF1D6;
+}
+
+.welcome-title{
+  font-size: 24px;
+  color: #40513B;
+}
+
+.page-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+}
+
+.subtitle{
+  font-size: 14px;
+  color: #609966;
+  opacity: 0.9;
+}
+
+.btn{
+  max-width: 100px;
+  max-height: 100px;
+  background-color: #609966;
+  color: #EDF1D6;
+  font-weight: bold;
+  border-radius: 14px;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.sm-margin{
+  margin: 10px
+}
+
+.disable{
+  pointer-events: none;
+  opacity: 0.4;
+  cursor: not-allowed;
+}

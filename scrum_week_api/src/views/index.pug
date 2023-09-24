@@ -1,0 +1,173 @@
+
+
+extends layout
+
+append head
+  style
+    include ../../public/css/test.css
+  script(src="../javascript/roslib.js" type="text/javascript")
+  script(src="../javascript/eventemitter2.js" type="text/javascript")
+
+  script.
+        var ros = new ROSLIB.Ros({
+          url : 'ws://localhost:9090'
+          });
+  
+          ros.on('connection', function() {
+              console.log('Connected to websocket server.');
+          });
+  
+          ros.on('error', function(error) {
+              console.log('Error connecting to websocket server: ', error);
+          });
+  
+          ros.on('close', function() {
+              console.log('Connection to websocket server closed.');
+          });
+  
+        var startCommand = new ROSLIB.Topic({
+              ros : ros,
+              name : '/start_cmd',
+              messageType : 'std_msgs/String'
+          });
+  
+        //function doStuff(){
+        //      if (localStorage.getItem("initBtn") === "disable") {
+        //      console.log(localStorage.getItem("initBtn") === "disable");
+        //      const initBtn = document.getElementById("btn-init");
+        //      const startBtn = document.getElementById("btn-start");
+        //  
+        //      console.log("adding disable to init");
+        //      console.log("removing disable to start");
+        //  
+        //      
+        //      initBtn.classList.add("disable");
+        //      console.log(initBtn);
+        //  
+        //      startBtn.classList.remove("disable");
+        //      console.log(startBtn);
+        //  
+        //      };
+        //  }
+
+
+          window.onload = (event) => {
+                  const cameraStatus = document.getElementById("camera_status");
+                  console.log("page is fully loaded");
+                  if(localStorage.getItem("camera_init") === "True" ){
+                  cameraStatus.innerHTML = "Camera is On...Please DON'T press the start button again!";
+                  console.log("inside if");
+                  } else{
+                    cameraStatus.innerHTML = "Camera is Off";
+                    console.log("inside else");
+                  }
+              }
+  
+          function startHandler(event) {
+              console.log(event)
+              const initBtn = document.getElementById("btn-initialize");
+              const startBtn = document.getElementById("btn-start");
+              const stopBtn = document.getElementById("btn-stop");
+              const killBtn = document.getElementById("btn-kill");
+              const cameraStatus = document.getElementById("camera_status");
+
+              
+              //console.log(initBtn);
+  
+              const pressedBtn = `${event.target.getAttribute("name")}`
+  
+              console.log(pressedBtn);
+  
+              //switch(pressedBtn) {
+              //case "init":
+              //    initBtn.classList.add("disable");
+              //    localStorage.setItem("initBtn", "disable");
+              //    startBtn.classList.remove("disable");
+              //    break;
+              //case "start":
+              //    stopBtn.classList.remove("disable");
+              //    startBtn.classList.add("disable");
+              //    break;
+              //case "stop":
+              //    startBtn.classList.remove("disable");
+              //    stopBtn.classList.add("disable");
+              //    break;
+              //default:
+              //    break;
+              //}
+
+              if (pressedBtn === "initialize") {
+                cameraStatus.innerHTML = "Camera is On...Please DON'T press the start button again!";
+                localStorage.setItem("camera_init", "True");
+                console.log(cameraStatus)
+              }
+
+              if(pressedBtn === "kill") {
+                localStorage.setItem("camera_init", "False");
+                cameraStatus.innerHTML = "Camera is Off";
+              }
+
+
+              //cameraStatus.innerHTML = "Camera is Off";
+  
+              var startMessage = new ROSLIB.Message({
+              data : pressedBtn
+              });
+              startCommand.publish(startMessage);
+  
+              if(pressedBtn === "stop") {
+              console.log("to be reload")
+              window.location.reload();
+              }
+
+              
+              
+
+              
+
+              
+  
+          };
+
+
+block layout-content
+  div.View
+    h1 #{myTitle}
+    div.Message
+      div.on-off-container
+        button(class ="btn" id='btn-initialize' onclick='startHandler(event)' name='initialize') Turn on
+        button(class ="btn" id='btn-kill' onclick='startHandler(event)' name='kill') Turn Off
+      div.start-stop-container
+        button(class ="btn start-btn" id='btn-start' onclick='startHandler(event)' name='start') Start 
+        button(class ="btn stop-btn" id='btn-stop' onclick='startHandler(event)' name='stop') Stop
+        p(class="camera-status" id="camera_status"  value="camera Off") Camera is Off
+        
+
+        
+    div.NavButtons
+      h4 My Scans
+      form(action="/" method="post")
+        each item in sortButtons
+          label
+            input(type='radio', name='sortType', value=item)/ #{item}
+        button(type='submit') Sortieren
+      
+    //  ul
+    //    each item in data
+    //      a(class="model-link" href=`./models/${item.name}`)
+    //        li
+    //          div.NavButton #{item.name} | #{item.size} | #{item.birthtime}
+
+
+    table
+        tr 
+          th Filename
+          th Size
+          th Date 
+        tbody     
+        each item in data
+          tr
+            td 
+              a(class="model-link" href=`./models/${item.name}`) #{item.name}
+            td #{item.size}
+            td #{item.birthtime}

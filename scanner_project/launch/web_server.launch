@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Launch socket rosbridge server -->
+    <!-- <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+        <arg name="port" value="9090"/>
+    </include> -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+        <arg name="port" value="9090" />
+        <!--arg name="websocket_external_port" value="$(env SLOT_ROSBRIDGE_PORT)" /-->
+    </include>
+
+    <!-- Generate compressed images -->
+    <include file="$(find scanner_project)/launch/compressed_images.launch" />
+
+</launch>

@@ -1,0 +1,57 @@
+h1 {
+    font-size: 36px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 10px;
+}
+
+body {
+    background-color: #F0E7D8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    margin: 10px;
+    padding: 6px;
+}
+
+.on-off-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.start-stop-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.start-btn{
+    background-color: rgb(158, 233, 158);
+    font-weight: bold;
+}
+
+.stop-btn{
+    background-color: rgb(240, 164, 164);
+    font-weight: bold;
+}
+
+.model-link{
+    margin: 10px
+}
